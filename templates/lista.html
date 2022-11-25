@@ -1,0 +1,21 @@
+<html>
+    <tr>
+        <th>Nº Pedido</th>
+        <th>Cliente</th>
+        <th>Data</th>
+    </tr>
+{% block content %}
+{% if lista %}
+
+   {% for line in lista%}
+   <tr>
+       <td class="item-{{line[3]}}">{{line[0]}}</td>
+       <td>{{line[1]}}</td>
+       <td>{{line[2]}}</td>
+   </tr>
+   {% endfor %}
+{% endif %}
+{% endblock %}
+
+
+</html>

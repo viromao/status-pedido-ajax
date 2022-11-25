@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script>
+
+        setInterval(
+            function () {
+            $.getJSON(
+                '/teste',
+                {},
+                function(data){
+                    $("#qtdaberto").text(data.qtdaberto)
+                    $("#qtdsep").text(data.qtdsep)
+                    $("#qtdemconf").text(data.qtdemconf)
+                    $("#qtdconf").text(data.qtdconf)
+                    // data.lista.each(function(line){
+                    //     $("#lista").prepend(
+                    //         `
+                    //     <tr>
+                    //         <td class="item-${line[3]}">${line[0]}</td>
+                    //         <td>${line[1]}</td>
+                    //         <td>${line[2]}</td>
+                    //     </tr>
+                    //         `
+                    //     )
+                    // })
+                    $("#lista").text("")
+
+                    for (line of data.lista) {
+                     $("#lista").prepend(
+                     
+                    `
+                        <tr>
+                            <td class="item-`+ line[3] +`">` + line[0] + `</td>
+                            <td>`+ line[1] + `</td>
+                            <td>`+ line[2]+`</td>
+                        </tr>`
+                        )
+
+                    }
+}
+
+
+            )
+
+
+        }, 8000);
+
+
+    </script>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="../static/css/styles.css"> -->
+    <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
+    
+    <script src="https://kit.fontawesome.com/46abacbc0e.js" crossorigin="anonymous"></script>
+
+
+    <title>HomePage</title>
+</head>
+<body>
+    <!-- INICIO HEADER -->
+    <header>
+        <div class="img">
+            <img src="{{url_for('static',filename='img/ramtec.png')}}" alt="">
+        </div>
+        <div class="titulo">
+            Status Pedido
+        </div>
+    </header>
+    <!-- FIM HEADER -->
+    <div class="divisao">
+        <div class="imagem">
+            <!-- <video width="300px"  autoplay loop muted playsinline >
+                <source src="{{url_for('static',filename='img/a.mp4')}}" type="video/mp4">
+              </video> -->
+              <img src="{{url_for('static',filename='img/ramtec1.png')}}" alt="" srcset="">
+        </div>
+
+    
+    <div id="resto">
+                <!-- INICIO GROUPBOX -->
+                <div class="boxgroup">
+                    <div class="box a-box">
+                        <div class="i-box">
+                           <i class="fa fa-box-open"> </i>
+                        </div>
+                        <div class="textual">
+                            <span>Emitido</span>
+                            <p id="qtdaberto"> - </p>
+                        </div>
+                    </div>
+                    <div class="box sep-box">
+                        <div class="i-box">
+                            <i class="fa fa-clock-o"></i>
+                        </div>
+                        <div class="textual">
+                            <span>Em Separação</span>
+                             <p id="qtdsep"> - </p>
+                        </div>
+                    </div>
+                    
+                    <div class="box ec-box">
+                        <div class="i-box">
+                            <i class="fa fa-box"></i>
+                        </div>
+                        <div class="textual">
+                            <span>Em Conferência</span>
+                            <p id="qtdemconf"> - </p>
+                        </div>
+                    </div>
+            
+                    <div class="box c-box">
+                        <div class="i-box">
+                            <i class="fa fa-box"></i>
+                        </div>
+                        <div class="textual">
+                            <span>Conferido</span>
+                            <p id="qtdconf"> - </p>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- FIM GROUPBOX -->
+                <section class="Andamento">
+                    <h2>Pedidos em Andamento</h2>
+                
+                    <table id="lista">
+                        
+
+                    </table>
+                
+                
+                </section>
+
+</div>
+</div>
+    
+
+</body>
+</html>
